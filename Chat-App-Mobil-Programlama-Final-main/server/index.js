@@ -33,10 +33,11 @@ socketIO.on("connection", (socket) => {
 	});
 
 	socket.on("newMessage", (data) => {
-		const { room_id, message, user, timestamp } = data;
+		const { room_id, subject, message, user, timestamp } = data;
 		let result = chatRooms.filter((room) => room.id == room_id);
 		const newMessage = {
 			id: generateID(),
+			subject: subject,
 			text: message,
 			user,
 			time: `${timestamp.hour}:${timestamp.mins}`,
